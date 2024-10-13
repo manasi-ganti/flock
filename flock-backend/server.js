@@ -78,7 +78,7 @@ app.get('/messages/:userId', async (req, res) => {
     const { userId } = req.params;
     console.log("param " + userId);
     const messages = await Pidgeon.find({
-      $or: [{ senderId: userId }, { receiverIds: userId }],
+      receiverIds: userId //[{ senderId: userId }, { receiverIds: userId }],
     });
     console.log("messages : " + messages);
     res.json(messages);
@@ -116,7 +116,7 @@ app.post('/sendPidge', async (req, res) => {
 
     res.status(201).json(newPidgeon);
   } catch (error) {
-    console.error(error.response.data);
+    console.error(error);
     res.status(500).json({ error: 'Failed to send message' });
   }
 });
