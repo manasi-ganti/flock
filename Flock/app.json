@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mganti.Flock"
+      "bundleIdentifier": "com.mganti.Flock",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAveR64-0ip6gqldxwL5S_Z_PHV0T3QRWY"
+      }
     },
     "android": {
       "adaptiveIcon": {
