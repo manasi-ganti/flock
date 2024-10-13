@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, TextInput, Button, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, ScrollView, Alert } from 'react-native';
 //import * as Location from 'expo-location';
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
@@ -75,7 +75,7 @@ export default function App() {
 
     const getMessages = async () => {
       try {
-        const response = await axios.get(`${API_URL}/messages/${userId}`);
+        const response = await axios.get(`${API_URL}/messages/670bc5236aa9d1758ac7e754`);
         console.log("res " + response.data);
         setMessages(response.data);
         console.log("messages");
@@ -187,41 +187,44 @@ export default function App() {
   // };
 
   // Fetch message history
-  const getMessages = async () => {
-    const response = await axios.get(`${API_URL}/messages/${userId}`);
-    setMessages(response.data);
-  };
+  // const getMessages = async () => {
+  //   const response = await axios.get(`${API_URL}/messages/${userId}`);
+  //   setMessages(response.data);
+  // };
 
   return (
-    <View style={{ padding: 20, flex: 1 }}>
-      {/* <Button title="Register" onPress={registerUser} /> */}
-
-      {/* <TextInput
-        placeholder="Type a message"
-        value={message}
-        onChangeText={setMessage}
-        style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
-      /> */}
-
-      {/* <Button title="Send Message & Notify Nearby Users" onPress={sendMessage} /> */}
-
-      <Button title="Get Messages" onPress={getMessages} />
-      
+    <View style={{ padding: 50, flex: 1 }}>
       <ScrollView>
-        <ScrollView>
-          {messages.map((msg, index) => (
-            <Text key={index}>{msg.message} </Text> // Access the message property
-          ))}
-        </ScrollView>
+        {messages.map((msg, index) => (
+          <View key={index} style={styles.messageBox}>
+            <Text style={styles.messageText}>{msg.message}</Text>
+            <Text style={styles.timestampText}>Sent at: {new Date(msg.timestamp).toLocaleString()}</Text> 
+            <Text style={styles.receiversText}>To: {msg.receiverIds.join(', ')}</Text> 
+          </View>
+        ))}
       </ScrollView>
-
-      {/* {notification && (
-        <View style={{ marginTop: 20 }}>
-          <Text>Last Notification Received:</Text>
-          <Text>{notification.request.content.title}</Text>
-          <Text>{notification.request.content.body}</Text>
-        </View>
-      )} */}
     </View>
   );
 }
+const styles = StyleSheet.create({
+  messageBox: {
+    backgroundColor: '#B0C4DE', // Dusty blue color
+    padding: 20,
+    marginVertical: 10,
+    borderRadius: 8, 
+    width: '100%', 
+  },
+  messageText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  timestampText: {
+    fontSize: 12,
+    color: '#555', 
+    marginBottom: 5,
+  },
+  receiversText: {
+    fontSize: 14,
+  },
+});
