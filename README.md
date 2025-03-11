@@ -15,3 +15,4 @@ See which friends are nearby and free to meet up on the fly. Whether you need a 
 Flock promotes safety, too. Walking home alone at night and feeling a bit nervous? Just send a quick message to see who's nearby and free to walk with you. Flock serves as a digital buddy system, so you can feel safer getting home.
 Less screen time, more face-to-face connection
 
+Created By Manasi Ganti, Swetha Puvvada
